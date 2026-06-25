@@ -1,753 +1,398 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-  <meta http-equiv="Content-Style-Type" content="text/css">
-  <title></title>
-  <meta name="Generator" content="Cocoa HTML Writer">
-  <meta name="CocoaVersion" content="2566">
-  <style type="text/css">
-    p.p1 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Helvetica}
-    p.p2 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Helvetica; min-height: 14.0px}
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Student Blog Portfolio</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap');
+:root{
+    --primary:#7B2FF7;
+    --secondary:#A855F7;
+    --accent:#C084FC;
+    --dark:#12071f;
+    --card:#1e1033;
+    --light:#f5f3ff;
+}
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    scroll-behavior:smooth;
+    font-family:'Poppins',sans-serif;
+}
+body{
+    background:linear-gradient(135deg,#12071f,#1b0f2f,#2b124c);
+    color:white;
+    overflow-x:hidden;
+}
+/* ================= HEADER ================= */
+header{
+    position:fixed;
+    width:100%;
+    top:0;
+    z-index:1000;
+    backdrop-filter:blur(12px);
+    background:rgba(18,7,31,0.75);
+    border-bottom:1px solid rgba(255,255,255,0.08);
+}
+nav{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:18px 8%;
+}
+.logo{
+    font-size:1.5rem;
+    font-weight:700;
+    color:white;
+}
+.logo span{
+    color:var(--accent);
+}
+nav ul{
+    display:flex;
+    list-style:none;
+    gap:25px;
+}
+nav a{
+    text-decoration:none;
+    color:white;
+    transition:0.3s;
+}
+nav a:hover{
+    color:var(--accent);
+}
+/* ================= HERO ================= */
+.hero{
+    min-height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    text-align:center;
+    padding:100px 10%;
+    position:relative;
+}
+.hero::before{
+    content:'';
+    position:absolute;
+    width:600px;
+    height:600px;
+    background:radial-gradient(circle,var(--primary),transparent 70%);
+    opacity:.25;
+    filter:blur(60px);
+}
+.hero-content{
+    position:relative;
+    z-index:2;
+}
+.hero h1{
+    font-size:4rem;
+    line-height:1.2;
+    margin-bottom:15px;
+}
+.animated-text{
+    display:inline-block;
+    color:var(--accent);
+    animation:glow 3s infinite alternate;
+}
+@keyframes glow{
+    from{
+        text-shadow:0 0 10px #c084fc;
+    }
+    to{
+        text-shadow:
+        0 0 20px #c084fc,
+        0 0 40px #a855f7,
+        0 0 60px #7b2ff7;
+    }
+}
+.hero p{
+    max-width:700px;
+    margin:auto;
+    opacity:.9;
+    font-size:1.1rem;
+}
+.hero-btn{
+    margin-top:30px;
+    display:inline-block;
+    padding:14px 32px;
+    background:linear-gradient(45deg,var(--primary),var(--secondary));
+    border-radius:50px;
+    color:white;
+    text-decoration:none;
+    font-weight:600;
+    transition:.4s;
+}
+.hero-btn:hover{
+    transform:translateY(-4px);
+}
+/* ================= SECTIONS ================= */
+section{
+    padding:90px 10%;
+}
+.section-title{
+    text-align:center;
+    margin-bottom:50px;
+}
+.section-title h2{
+    font-size:2.5rem;
+    color:var(--accent);
+}
+.section-title p{
+    opacity:.8;
+}
+/* ================= ABOUT ================= */
+.about{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:50px;
+    align-items:center;
+}
+.about-card{
+    background:rgba(255,255,255,.05);
+    padding:35px;
+    border-radius:25px;
+    backdrop-filter:blur(15px);
+    border:1px solid rgba(255,255,255,.08);
+}
+.about-card h3{
+    margin-bottom:15px;
+    color:var(--accent);
+}
+/* ================= INTERESTS ================= */
+.interests-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+    gap:25px;
+}
+.card{
+    background:rgba(255,255,255,.05);
+    padding:30px;
+    border-radius:25px;
+    text-align:center;
+    transition:.4s;
+    border:1px solid rgba(255,255,255,.08);
+}
+.card:hover{
+    transform:translateY(-10px);
+    box-shadow:0 10px 25px rgba(168,85,247,.4);
+}
+.card .icon{
+    font-size:3rem;
+    margin-bottom:15px;
+}
+/* ================= ACHIEVEMENT ================= */
+.achievement{
+    text-align:center;
+}
+.achievement-box{
+    background:linear-gradient(135deg,#7B2FF7,#A855F7);
+    padding:50px;
+    border-radius:30px;
+    max-width:900px;
+    margin:auto;
+    box-shadow:0 20px 50px rgba(123,47,247,.4);
+}
+.achievement-box h3{
+    font-size:2rem;
+    margin-bottom:15px;
+}
+/* ================= CONTACT ================= */
+.contact-box{
+    max-width:800px;
+    margin:auto;
+    text-align:center;
+    background:rgba(255,255,255,.05);
+    padding:40px;
+    border-radius:25px;
+}
+.socials{
+    margin-top:25px;
+    display:flex;
+    justify-content:center;
+    gap:20px;
+}
+.socials a{
+    text-decoration:none;
+    color:white;
+    padding:12px 20px;
+    background:rgba(255,255,255,.08);
+    border-radius:50px;
+    transition:.3s;
+}
+.socials a:hover{
+    background:var(--primary);
+}
+/* ================= FOOTER ================= */
+footer{
+    text-align:center;
+    padding:30px;
+    opacity:.7;
+}
+/* ================= ANIMATIONS ================= */
+.hidden{
+    opacity:0;
+    transform:translateY(50px);
+    transition:all 1s ease;
+}
+.show{
+    opacity:1;
+    transform:translateY(0);
+}
+/* ================= RESPONSIVE ================= */
+@media(max-width:900px){
+.about{
+    grid-template-columns:1fr;
+}
+.hero h1{
+    font-size:2.8rem;
+}
+nav{
+    flex-direction:column;
+    gap:15px;
+}
+nav ul{
+    flex-wrap:wrap;
+    justify-content:center;
+}
+}
+</style>
 </head>
 <body>
-<p class="p1">&lt;!DOCTYPE html&gt;</p>
-<p class="p1">&lt;html lang="en"&gt;</p>
-<p class="p1">&lt;head&gt;</p>
-<p class="p1">&lt;meta charset="UTF-8"&gt;</p>
-<p class="p1">&lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;</p>
-<p class="p2"><span class="Apple-converted-space"> </span></p>
-<p class="p1">&lt;title&gt;Student Blog Portfolio&lt;/title&gt;</p>
-<p class="p2"><span class="Apple-converted-space"> </span></p>
-<p class="p1">&lt;style&gt;</p>
-<p class="p2"><br></p>
-<p class="p1">@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&amp;display=swap');</p>
-<p class="p2"><span class="Apple-converted-space"> </span></p>
-<p class="p1">:root{</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>--primary:#7B2FF7;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>--secondary:#A855F7;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>--accent:#C084FC;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>--dark:#12071f;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>--card:#1e1033;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>--light:#f5f3ff;</p>
-<p class="p2"><br></p>
-<p class="p1">}</p>
-<p class="p2"><span class="Apple-converted-space"> </span></p>
-<p class="p1">*{</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>margin:0;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>padding:0;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>box-sizing:border-box;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>scroll-behavior:smooth;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>font-family:'Poppins',sans-serif;</p>
-<p class="p2"><br></p>
-<p class="p1">}</p>
-<p class="p2"><span class="Apple-converted-space"> </span></p>
-<p class="p1">body{</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>background:linear-gradient(135deg,#12071f,#1b0f2f,#2b124c);</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>color:white;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>overflow-x:hidden;</p>
-<p class="p2"><br></p>
-<p class="p1">}</p>
-<p class="p2"><span class="Apple-converted-space"> </span></p>
-<p class="p1">/* ================= HEADER ================= */</p>
-<p class="p2"><span class="Apple-converted-space"> </span></p>
-<p class="p1">header{</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>position:fixed;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>width:100%;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>top:0;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>z-index:1000;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>backdrop-filter:blur(12px);</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>background:rgba(18,7,31,0.75);</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>border-bottom:1px solid rgba(255,255,255,0.08);</p>
-<p class="p2"><br></p>
-<p class="p1">}</p>
-<p class="p2"><span class="Apple-converted-space"> </span></p>
-<p class="p1">nav{</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>display:flex;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>justify-content:space-between;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>align-items:center;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>padding:18px 8%;</p>
-<p class="p2"><br></p>
-<p class="p1">}</p>
-<p class="p2"><span class="Apple-converted-space"> </span></p>
-<p class="p1">.logo{</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>font-size:1.5rem;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>font-weight:700;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>color:white;</p>
-<p class="p2"><br></p>
-<p class="p1">}</p>
-<p class="p2"><span class="Apple-converted-space"> </span></p>
-<p class="p1">.logo span{</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>color:var(--accent);</p>
-<p class="p2"><br></p>
-<p class="p1">}</p>
-<p class="p2"><span class="Apple-converted-space"> </span></p>
-<p class="p1">nav ul{</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>display:flex;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>list-style:none;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>gap:25px;</p>
-<p class="p2"><br></p>
-<p class="p1">}</p>
-<p class="p2"><span class="Apple-converted-space"> </span></p>
-<p class="p1">nav a{</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>text-decoration:none;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>color:white;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>transition:0.3s;</p>
-<p class="p2"><br></p>
-<p class="p1">}</p>
-<p class="p2"><span class="Apple-converted-space"> </span></p>
-<p class="p1">nav a:hover{</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>color:var(--accent);</p>
-<p class="p2"><br></p>
-<p class="p1">}</p>
-<p class="p2"><span class="Apple-converted-space"> </span></p>
-<p class="p1">/* ================= HERO ================= */</p>
-<p class="p2"><span class="Apple-converted-space"> </span></p>
-<p class="p1">.hero{</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>min-height:100vh;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>display:flex;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>justify-content:center;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>align-items:center;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>text-align:center;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>padding:100px 10%;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>position:relative;</p>
-<p class="p2"><br></p>
-<p class="p1">}</p>
-<p class="p2"><span class="Apple-converted-space"> </span></p>
-<p class="p1">.hero::before{</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>content:'';</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>position:absolute;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>width:600px;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>height:600px;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>background:radial-gradient(circle,var(--primary),transparent 70%);</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>opacity:.25;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>filter:blur(60px);</p>
-<p class="p2"><br></p>
-<p class="p1">}</p>
-<p class="p2"><span class="Apple-converted-space"> </span></p>
-<p class="p1">.hero-content{</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>position:relative;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>z-index:2;</p>
-<p class="p2"><br></p>
-<p class="p1">}</p>
-<p class="p2"><span class="Apple-converted-space"> </span></p>
-<p class="p1">.hero h1{</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>font-size:4rem;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>line-height:1.2;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>margin-bottom:15px;</p>
-<p class="p2"><br></p>
-<p class="p1">}</p>
-<p class="p2"><span class="Apple-converted-space"> </span></p>
-<p class="p1">.animated-text{</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>display:inline-block;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>color:var(--accent);</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>animation:glow 3s infinite alternate;</p>
-<p class="p2"><br></p>
-<p class="p1">}</p>
-<p class="p2"><span class="Apple-converted-space"> </span></p>
-<p class="p1">@keyframes glow{</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>from{</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>text-shadow:0 0 10px #c084fc;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>to{</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>text-shadow:</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>0 0 20px #c084fc,</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>0 0 40px #a855f7,</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>0 0 60px #7b2ff7;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>}</p>
-<p class="p2"><br></p>
-<p class="p1">}</p>
-<p class="p2"><span class="Apple-converted-space"> </span></p>
-<p class="p1">.hero p{</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>max-width:700px;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>margin:auto;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>opacity:.9;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>font-size:1.1rem;</p>
-<p class="p2"><br></p>
-<p class="p1">}</p>
-<p class="p2"><span class="Apple-converted-space"> </span></p>
-<p class="p1">.hero-btn{</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>margin-top:30px;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>display:inline-block;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>padding:14px 32px;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>background:linear-gradient(45deg,var(--primary),var(--secondary));</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>border-radius:50px;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>color:white;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>text-decoration:none;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>font-weight:600;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>transition:.4s;</p>
-<p class="p2"><br></p>
-<p class="p1">}</p>
-<p class="p2"><span class="Apple-converted-space"> </span></p>
-<p class="p1">.hero-btn:hover{</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>transform:translateY(-4px);</p>
-<p class="p2"><br></p>
-<p class="p1">}</p>
-<p class="p2"><span class="Apple-converted-space"> </span></p>
-<p class="p1">/* ================= SECTIONS ================= */</p>
-<p class="p2"><span class="Apple-converted-space"> </span></p>
-<p class="p1">section{</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>padding:90px 10%;</p>
-<p class="p2"><br></p>
-<p class="p1">}</p>
-<p class="p2"><span class="Apple-converted-space"> </span></p>
-<p class="p1">.section-title{</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>text-align:center;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>margin-bottom:50px;</p>
-<p class="p2"><br></p>
-<p class="p1">}</p>
-<p class="p2"><span class="Apple-converted-space"> </span></p>
-<p class="p1">.section-title h2{</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>font-size:2.5rem;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>color:var(--accent);</p>
-<p class="p2"><br></p>
-<p class="p1">}</p>
-<p class="p2"><span class="Apple-converted-space"> </span></p>
-<p class="p1">.section-title p{</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>opacity:.8;</p>
-<p class="p2"><br></p>
-<p class="p1">}</p>
-<p class="p2"><span class="Apple-converted-space"> </span></p>
-<p class="p1">/* ================= ABOUT ================= */</p>
-<p class="p2"><span class="Apple-converted-space"> </span></p>
-<p class="p1">.about{</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>display:grid;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>grid-template-columns:1fr 1fr;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>gap:50px;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>align-items:center;</p>
-<p class="p2"><br></p>
-<p class="p1">}</p>
-<p class="p2"><span class="Apple-converted-space"> </span></p>
-<p class="p1">.about-card{</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>background:rgba(255,255,255,.05);</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>padding:35px;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>border-radius:25px;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>backdrop-filter:blur(15px);</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>border:1px solid rgba(255,255,255,.08);</p>
-<p class="p2"><br></p>
-<p class="p1">}</p>
-<p class="p2"><span class="Apple-converted-space"> </span></p>
-<p class="p1">.about-card h3{</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>margin-bottom:15px;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>color:var(--accent);</p>
-<p class="p2"><br></p>
-<p class="p1">}</p>
-<p class="p2"><span class="Apple-converted-space"> </span></p>
-<p class="p1">/* ================= INTERESTS ================= */</p>
-<p class="p2"><span class="Apple-converted-space"> </span></p>
-<p class="p1">.interests-grid{</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>display:grid;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>grid-template-columns:repeat(auto-fit,minmax(250px,1fr));</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>gap:25px;</p>
-<p class="p2"><br></p>
-<p class="p1">}</p>
-<p class="p2"><span class="Apple-converted-space"> </span></p>
-<p class="p1">.card{</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>background:rgba(255,255,255,.05);</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>padding:30px;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>border-radius:25px;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>text-align:center;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>transition:.4s;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>border:1px solid rgba(255,255,255,.08);</p>
-<p class="p2"><br></p>
-<p class="p1">}</p>
-<p class="p2"><span class="Apple-converted-space"> </span></p>
-<p class="p1">.card:hover{</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>transform:translateY(-10px);</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>box-shadow:0 10px 25px rgba(168,85,247,.4);</p>
-<p class="p2"><br></p>
-<p class="p1">}</p>
-<p class="p2"><span class="Apple-converted-space"> </span></p>
-<p class="p1">.card .icon{</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>font-size:3rem;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>margin-bottom:15px;</p>
-<p class="p2"><br></p>
-<p class="p1">}</p>
-<p class="p2"><span class="Apple-converted-space"> </span></p>
-<p class="p1">/* ================= ACHIEVEMENT ================= */</p>
-<p class="p2"><span class="Apple-converted-space"> </span></p>
-<p class="p1">.achievement{</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>text-align:center;</p>
-<p class="p2"><br></p>
-<p class="p1">}</p>
-<p class="p2"><span class="Apple-converted-space"> </span></p>
-<p class="p1">.achievement-box{</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>background:linear-gradient(135deg,#7B2FF7,#A855F7);</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>padding:50px;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>border-radius:30px;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>max-width:900px;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>margin:auto;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>box-shadow:0 20px 50px rgba(123,47,247,.4);</p>
-<p class="p2"><br></p>
-<p class="p1">}</p>
-<p class="p2"><span class="Apple-converted-space"> </span></p>
-<p class="p1">.achievement-box h3{</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>font-size:2rem;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>margin-bottom:15px;</p>
-<p class="p2"><br></p>
-<p class="p1">}</p>
-<p class="p2"><span class="Apple-converted-space"> </span></p>
-<p class="p1">/* ================= CONTACT ================= */</p>
-<p class="p2"><span class="Apple-converted-space"> </span></p>
-<p class="p1">.contact-box{</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>max-width:800px;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>margin:auto;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>text-align:center;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>background:rgba(255,255,255,.05);</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>padding:40px;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>border-radius:25px;</p>
-<p class="p2"><br></p>
-<p class="p1">}</p>
-<p class="p2"><span class="Apple-converted-space"> </span></p>
-<p class="p1">.socials{</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>margin-top:25px;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>display:flex;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>justify-content:center;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>gap:20px;</p>
-<p class="p2"><br></p>
-<p class="p1">}</p>
-<p class="p2"><span class="Apple-converted-space"> </span></p>
-<p class="p1">.socials a{</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>text-decoration:none;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>color:white;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>padding:12px 20px;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>background:rgba(255,255,255,.08);</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>border-radius:50px;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>transition:.3s;</p>
-<p class="p2"><br></p>
-<p class="p1">}</p>
-<p class="p2"><span class="Apple-converted-space"> </span></p>
-<p class="p1">.socials a:hover{</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>background:var(--primary);</p>
-<p class="p2"><br></p>
-<p class="p1">}</p>
-<p class="p2"><span class="Apple-converted-space"> </span></p>
-<p class="p1">/* ================= FOOTER ================= */</p>
-<p class="p2"><span class="Apple-converted-space"> </span></p>
-<p class="p1">footer{</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>text-align:center;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>padding:30px;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>opacity:.7;</p>
-<p class="p2"><br></p>
-<p class="p1">}</p>
-<p class="p2"><span class="Apple-converted-space"> </span></p>
-<p class="p1">/* ================= ANIMATIONS ================= */</p>
-<p class="p2"><span class="Apple-converted-space"> </span></p>
-<p class="p1">.hidden{</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>opacity:0;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>transform:translateY(50px);</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>transition:all 1s ease;</p>
-<p class="p2"><br></p>
-<p class="p1">}</p>
-<p class="p2"><span class="Apple-converted-space"> </span></p>
-<p class="p1">.show{</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>opacity:1;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>transform:translateY(0);</p>
-<p class="p2"><br></p>
-<p class="p1">}</p>
-<p class="p2"><span class="Apple-converted-space"> </span></p>
-<p class="p1">/* ================= RESPONSIVE ================= */</p>
-<p class="p2"><span class="Apple-converted-space"> </span></p>
-<p class="p1">@media(max-width:900px){</p>
-<p class="p2"><span class="Apple-converted-space"> </span></p>
-<p class="p1">.about{</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>grid-template-columns:1fr;</p>
-<p class="p2"><br></p>
-<p class="p1">}</p>
-<p class="p2"><span class="Apple-converted-space"> </span></p>
-<p class="p1">.hero h1{</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>font-size:2.8rem;</p>
-<p class="p2"><br></p>
-<p class="p1">}</p>
-<p class="p2"><span class="Apple-converted-space"> </span></p>
-<p class="p1">nav{</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>flex-direction:column;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>gap:15px;</p>
-<p class="p2"><br></p>
-<p class="p1">}</p>
-<p class="p2"><span class="Apple-converted-space"> </span></p>
-<p class="p1">nav ul{</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>flex-wrap:wrap;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>justify-content:center;</p>
-<p class="p2"><br></p>
-<p class="p1">}</p>
-<p class="p2"><br></p>
-<p class="p1">}</p>
-<p class="p2"><span class="Apple-converted-space"> </span></p>
-<p class="p1">&lt;/style&gt;</p>
-<p class="p1">&lt;/head&gt;</p>
-<p class="p1">&lt;body&gt;</p>
-<p class="p2"><span class="Apple-converted-space"> </span></p>
-<p class="p1">&lt;header&gt;</p>
-<p class="p1">&lt;nav&gt;</p>
-<p class="p1">&lt;div class="logo"&gt;Student&lt;span&gt;Blog&lt;/span&gt;&lt;/div&gt;</p>
-<p class="p2"><span class="Apple-converted-space"> </span></p>
-<p class="p1">&lt;ul&gt;</p>
-<p class="p1">&lt;li&gt;&lt;a href="#about"&gt;About&lt;/a&gt;&lt;/li&gt;</p>
-<p class="p1">&lt;li&gt;&lt;a href="#interests"&gt;Interests&lt;/a&gt;&lt;/li&gt;</p>
-<p class="p1">&lt;li&gt;&lt;a href="#achievement"&gt;Achievement&lt;/a&gt;&lt;/li&gt;</p>
-<p class="p1">&lt;li&gt;&lt;a href="#contact"&gt;Connect&lt;/a&gt;&lt;/li&gt;</p>
-<p class="p1">&lt;/ul&gt;</p>
-<p class="p1">&lt;/nav&gt;</p>
-<p class="p1">&lt;/header&gt;</p>
-<p class="p2"><span class="Apple-converted-space"> </span></p>
-<p class="p1">&lt;!-- HERO --&gt;</p>
-<p class="p2"><span class="Apple-converted-space"> </span></p>
-<p class="p1">&lt;section class="hero"&gt;</p>
-<p class="p2"><span class="Apple-converted-space"> </span></p>
-<p class="p1">&lt;div class="hero-content"&gt;</p>
-<p class="p2"><span class="Apple-converted-space"> </span></p>
-<p class="p1">&lt;h1&gt;</p>
-<p class="p2"><br></p>
-<p class="p1">Hello, I'm&lt;br&gt;</p>
-<p class="p1">&lt;span class="animated-text"&gt;[YOUR NAME]&lt;/span&gt;</p>
-<p class="p1">&lt;/h1&gt;</p>
-<p class="p2"><span class="Apple-converted-space"> </span></p>
-<p class="p1">&lt;p&gt;</p>
-<p class="p2"><br></p>
-<p class="p1">A passionate student, creator, and lifelong learner who loves exploring new ideas,</p>
-<p class="p2"><br></p>
-<p class="p1">building exciting projects, and turning curiosity into innovation.</p>
-<p class="p1">&lt;/p&gt;</p>
-<p class="p2"><span class="Apple-converted-space"> </span></p>
-<p class="p1">&lt;a href="#about" class="hero-btn"&gt;Explore My Journey&lt;/a&gt;</p>
-<p class="p2"><span class="Apple-converted-space"> </span></p>
-<p class="p1">&lt;/div&gt;</p>
-<p class="p2"><span class="Apple-converted-space"> </span></p>
-<p class="p1">&lt;/section&gt;</p>
-<p class="p2"><span class="Apple-converted-space"> </span></p>
-<p class="p1">&lt;!-- ABOUT --&gt;</p>
-<p class="p2"><span class="Apple-converted-space"> </span></p>
-<p class="p1">&lt;section id="about" class="hidden"&gt;</p>
-<p class="p2"><span class="Apple-converted-space"> </span></p>
-<p class="p1">&lt;div class="section-title"&gt;</p>
-<p class="p1">&lt;h2&gt;About Me&lt;/h2&gt;</p>
-<p class="p1">&lt;p&gt;Who I am beyond grades and achievements.&lt;/p&gt;</p>
-<p class="p1">&lt;/div&gt;</p>
-<p class="p2"><span class="Apple-converted-space"> </span></p>
-<p class="p1">&lt;div class="about"&gt;</p>
-<p class="p2"><span class="Apple-converted-space"> </span></p>
-<p class="p1">&lt;div class="about-card"&gt;</p>
-<p class="p1">&lt;h3&gt;Student Profile&lt;/h3&gt;</p>
-<p class="p2"><span class="Apple-converted-space"> </span></p>
-<p class="p1">&lt;p&gt;</p>
-<p class="p2"><br></p>
-<p class="p1">🎓 Grade: &lt;b&gt;[YOUR GRADE]&lt;/b&gt;&lt;br&gt;&lt;br&gt;</p>
-<p class="p2"><span class="Apple-converted-space"> </span></p>
-<p class="p1">🏫 School: &lt;b&gt;[YOUR SCHOOL]&lt;/b&gt;&lt;br&gt;&lt;br&gt;</p>
-<p class="p2"><span class="Apple-converted-space"> </span></p>
-<p class="p1">📚 Favourite Subject: &lt;b&gt;[YOUR FAVOURITE SUBJECT]&lt;/b&gt;&lt;br&gt;&lt;br&gt;</p>
-<p class="p2"><span class="Apple-converted-space"> </span></p>
-<p class="p1">🌟 Dream Goal: &lt;b&gt;[YOUR DREAM]&lt;/b&gt;</p>
-<p class="p1">&lt;/p&gt;</p>
-<p class="p1">&lt;/div&gt;</p>
-<p class="p2"><span class="Apple-converted-space"> </span></p>
-<p class="p1">&lt;div class="about-card"&gt;</p>
-<p class="p1">&lt;h3&gt;My Story&lt;/h3&gt;</p>
-<p class="p2"><span class="Apple-converted-space"> </span></p>
-<p class="p1">&lt;p&gt;</p>
-<p class="p2"><br></p>
-<p class="p1">I'm a curious and ambitious learner who enjoys challenging myself,</p>
-<p class="p2"><br></p>
-<p class="p1">discovering creative solutions, and continuously growing.</p>
-<p class="p2"><br></p>
-<p class="p1">Whether I'm working on projects, learning new skills, or exploring</p>
-<p class="p2"><br></p>
-<p class="p1">my interests, I believe every experience is an opportunity to improve</p>
-<p class="p2"><br></p>
-<p class="p1">and make a positive impact.</p>
-<p class="p1">&lt;/p&gt;</p>
-<p class="p2"><span class="Apple-converted-space"> </span></p>
-<p class="p1">&lt;/div&gt;</p>
-<p class="p2"><span class="Apple-converted-space"> </span></p>
-<p class="p1">&lt;/div&gt;</p>
-<p class="p2"><span class="Apple-converted-space"> </span></p>
-<p class="p1">&lt;/section&gt;</p>
-<p class="p2"><span class="Apple-converted-space"> </span></p>
-<p class="p1">&lt;!-- INTERESTS --&gt;</p>
-<p class="p2"><span class="Apple-converted-space"> </span></p>
-<p class="p1">&lt;section id="interests" class="hidden"&gt;</p>
-<p class="p2"><span class="Apple-converted-space"> </span></p>
-<p class="p1">&lt;div class="section-title"&gt;</p>
-<p class="p1">&lt;h2&gt;My Interests&lt;/h2&gt;</p>
-<p class="p1">&lt;p&gt;Things that inspire me every day.&lt;/p&gt;</p>
-<p class="p1">&lt;/div&gt;</p>
-<p class="p2"><span class="Apple-converted-space"> </span></p>
-<p class="p1">&lt;div class="interests-grid"&gt;</p>
-<p class="p2"><span class="Apple-converted-space"> </span></p>
-<p class="p1">&lt;div class="card"&gt;</p>
-<p class="p1">&lt;div class="icon"&gt;🤖&lt;/div&gt;</p>
-<p class="p1">&lt;h3&gt;Robotics&lt;/h3&gt;</p>
-<p class="p1">&lt;p&gt;Building and programming innovative creations.&lt;/p&gt;</p>
-<p class="p1">&lt;/div&gt;</p>
-<p class="p2"><span class="Apple-converted-space"> </span></p>
-<p class="p1">&lt;div class="card"&gt;</p>
-<p class="p1">&lt;div class="icon"&gt;♟️&lt;/div&gt;</p>
-<p class="p1">&lt;h3&gt;Chess&lt;/h3&gt;</p>
-<p class="p1">&lt;p&gt;Strategic thinking and problem solving.&lt;/p&gt;</p>
-<p class="p1">&lt;/div&gt;</p>
-<p class="p2"><span class="Apple-converted-space"> </span></p>
-<p class="p1">&lt;div class="card"&gt;</p>
-<p class="p1">&lt;div class="icon"&gt;🚀&lt;/div&gt;</p>
-<p class="p1">&lt;h3&gt;Astrophysics&lt;/h3&gt;</p>
-<p class="p1">&lt;p&gt;Exploring the mysteries of the universe.&lt;/p&gt;</p>
-<p class="p1">&lt;/div&gt;</p>
-<p class="p2"><span class="Apple-converted-space"> </span></p>
-<p class="p1">&lt;div class="card"&gt;</p>
-<p class="p1">&lt;div class="icon"&gt;✍️&lt;/div&gt;</p>
-<p class="p1">&lt;h3&gt;Writing&lt;/h3&gt;</p>
-<p class="p1">&lt;p&gt;Expressing ideas through creativity and storytelling.&lt;/p&gt;</p>
-<p class="p1">&lt;/div&gt;</p>
-<p class="p2"><span class="Apple-converted-space"> </span></p>
-<p class="p1">&lt;/div&gt;</p>
-<p class="p2"><span class="Apple-converted-space"> </span></p>
-<p class="p1">&lt;/section&gt;</p>
-<p class="p2"><span class="Apple-converted-space"> </span></p>
-<p class="p1">&lt;!-- ACHIEVEMENT --&gt;</p>
-<p class="p2"><span class="Apple-converted-space"> </span></p>
-<p class="p1">&lt;section id="achievement" class="achievement hidden"&gt;</p>
-<p class="p2"><span class="Apple-converted-space"> </span></p>
-<p class="p1">&lt;div class="section-title"&gt;</p>
-<p class="p1">&lt;h2&gt;Achievement Spotlight&lt;/h2&gt;</p>
-<p class="p1">&lt;p&gt;A project I'm especially proud of.&lt;/p&gt;</p>
-<p class="p1">&lt;/div&gt;</p>
-<p class="p2"><span class="Apple-converted-space"> </span></p>
-<p class="p1">&lt;div class="achievement-box"&gt;</p>
-<p class="p2"><span class="Apple-converted-space"> </span></p>
-<p class="p1">&lt;h3&gt;🏆 Featured Project&lt;/h3&gt;</p>
-<p class="p2"><span class="Apple-converted-space"> </span></p>
-<p class="p1">&lt;p&gt;</p>
-<p class="p2"><br></p>
-<p class="p1">[DESCRIBE YOUR PROJECT OR ACHIEVEMENT HERE]</p>
-<p class="p2"><span class="Apple-converted-space"> </span></p>
-<p class="p1">&lt;br&gt;&lt;br&gt;</p>
-<p class="p2"><span class="Apple-converted-space"> </span></p>
-<p class="p1">This accomplishment reflects my dedication,</p>
-<p class="p2"><br></p>
-<p class="p1">creativity, and commitment to learning through</p>
-<p class="p2"><br></p>
-<p class="p1">real-world challenges.</p>
-<p class="p1">&lt;/p&gt;</p>
-<p class="p2"><span class="Apple-converted-space"> </span></p>
-<p class="p1">&lt;/div&gt;</p>
-<p class="p2"><span class="Apple-converted-space"> </span></p>
-<p class="p1">&lt;/section&gt;</p>
-<p class="p2"><span class="Apple-converted-space"> </span></p>
-<p class="p1">&lt;!-- CONTACT --&gt;</p>
-<p class="p2"><span class="Apple-converted-space"> </span></p>
-<p class="p1">&lt;section id="contact" class="hidden"&gt;</p>
-<p class="p2"><span class="Apple-converted-space"> </span></p>
-<p class="p1">&lt;div class="section-title"&gt;</p>
-<p class="p1">&lt;h2&gt;Let's Connect&lt;/h2&gt;</p>
-<p class="p1">&lt;p&gt;I'd love to share ideas and collaborate.&lt;/p&gt;</p>
-<p class="p1">&lt;/div&gt;</p>
-<p class="p2"><span class="Apple-converted-space"> </span></p>
-<p class="p1">&lt;div class="contact-box"&gt;</p>
-<p class="p2"><span class="Apple-converted-space"> </span></p>
-<p class="p1">&lt;h3&gt;Contact Me&lt;/h3&gt;</p>
-<p class="p2"><span class="Apple-converted-space"> </span></p>
-<p class="p1">&lt;p&gt;</p>
-<p class="p2"><br></p>
-<p class="p1">📧 your.email@example.com</p>
-<p class="p1">&lt;br&gt;&lt;br&gt;</p>
-<p class="p2"><br></p>
-<p class="p1">🌐 Future Innovator • Student Leader • Lifelong Learner</p>
-<p class="p1">&lt;/p&gt;</p>
-<p class="p2"><span class="Apple-converted-space"> </span></p>
-<p class="p1">&lt;div class="socials"&gt;</p>
-<p class="p1">&lt;a href="#"&gt;LinkedIn&lt;/a&gt;</p>
-<p class="p1">&lt;a href="#"&gt;GitHub&lt;/a&gt;</p>
-<p class="p1">&lt;a href="#"&gt;Portfolio&lt;/a&gt;</p>
-<p class="p1">&lt;/div&gt;</p>
-<p class="p2"><span class="Apple-converted-space"> </span></p>
-<p class="p1">&lt;/div&gt;</p>
-<p class="p2"><span class="Apple-converted-space"> </span></p>
-<p class="p1">&lt;/section&gt;</p>
-<p class="p2"><span class="Apple-converted-space"> </span></p>
-<p class="p1">&lt;footer&gt;</p>
-<p class="p2"><br></p>
-<p class="p1">© 2026 [YOUR NAME] • Designed with Passion &amp; Creativity</p>
-<p class="p1">&lt;/footer&gt;</p>
-<p class="p2"><span class="Apple-converted-space"> </span></p>
-<p class="p1">&lt;script&gt;</p>
-<p class="p2"><br></p>
-<p class="p2"><span class="Apple-converted-space"> </span></p>
-<p class="p1">const observer = new IntersectionObserver(entries=&gt;{</p>
-<p class="p2"><br></p>
-<p class="p1">entries.forEach(entry=&gt;{</p>
-<p class="p2"><br></p>
-<p class="p1">if(entry.isIntersecting){</p>
-<p class="p2"><br></p>
-<p class="p1">entry.target.classList.add("show");</p>
-<p class="p2"><br></p>
-<p class="p1">}</p>
-<p class="p2"><br></p>
-<p class="p1">});</p>
-<p class="p2"><br></p>
-<p class="p1">});</p>
-<p class="p2"><span class="Apple-converted-space"> </span></p>
-<p class="p1">document.querySelectorAll('.hidden').forEach(el=&gt;{</p>
-<p class="p2"><br></p>
-<p class="p1">observer.observe(el);</p>
-<p class="p2"><br></p>
-<p class="p1">});</p>
-<p class="p2"><span class="Apple-converted-space"> </span></p>
-<p class="p1">&lt;/script&gt;</p>
-<p class="p2"><span class="Apple-converted-space"> </span></p>
-<p class="p1">&lt;/body&gt;</p>
-<p class="p1">&lt;/html&gt;</p>
-<p class="p2"><span class="Apple-converted-space"> </span></p>
+<header>
+<nav>
+<div class="logo">Student<span>Blog</span></div>
+<ul>
+<li><a href="#about">About</a></li>
+<li><a href="#interests">Interests</a></li>
+<li><a href="#achievement">Achievement</a></li>
+<li><a href="#contact">Connect</a></li>
+</ul>
+</nav>
+</header>
+<!-- HERO -->
+<section class="hero">
+<div class="hero-content">
+<h1>
+Hello, I'm<br>
+<span class="animated-text">[YOUR NAME]</span>
+</h1>
+<p>
+A passionate student, creator, and lifelong learner who loves exploring new ideas,
+building exciting projects, and turning curiosity into innovation.
+</p>
+<a href="#about" class="hero-btn">Explore My Journey</a>
+</div>
+</section>
+<!-- ABOUT -->
+<section id="about" class="hidden">
+<div class="section-title">
+<h2>About Me</h2>
+<p>Who I am beyond grades and achievements.</p>
+</div>
+<div class="about">
+<div class="about-card">
+<h3>Student Profile</h3>
+<p>
+🎓 Grade: <b>[YOUR GRADE]</b><br><br>
+🏫 School: <b>[YOUR SCHOOL]</b><br><br>
+📚 Favourite Subject: <b>[YOUR FAVOURITE SUBJECT]</b><br><br>
+🌟 Dream Goal: <b>[YOUR DREAM]</b>
+</p>
+</div>
+<div class="about-card">
+<h3>My Story</h3>
+<p>
+I'm a curious and ambitious learner who enjoys challenging myself,
+discovering creative solutions, and continuously growing.
+Whether I'm working on projects, learning new skills, or exploring
+my interests, I believe every experience is an opportunity to improve
+and make a positive impact.
+</p>
+</div>
+</div>
+</section>
+<!-- INTERESTS -->
+<section id="interests" class="hidden">
+<div class="section-title">
+<h2>My Interests</h2>
+<p>Things that inspire me every day.</p>
+</div>
+<div class="interests-grid">
+<div class="card">
+<div class="icon">🤖</div>
+<h3>Robotics</h3>
+<p>Building and programming innovative creations.</p>
+</div>
+<div class="card">
+<div class="icon">♟️</div>
+<h3>Chess</h3>
+<p>Strategic thinking and problem solving.</p>
+</div>
+<div class="card">
+<div class="icon">🚀</div>
+<h3>Astrophysics</h3>
+<p>Exploring the mysteries of the universe.</p>
+</div>
+<div class="card">
+<div class="icon">✍️</div>
+<h3>Writing</h3>
+<p>Expressing ideas through creativity and storytelling.</p>
+</div>
+</div>
+</section>
+<!-- ACHIEVEMENT -->
+<section id="achievement" class="achievement hidden">
+<div class="section-title">
+<h2>Achievement Spotlight</h2>
+<p>A project I'm especially proud of.</p>
+</div>
+<div class="achievement-box">
+<h3>🏆 Featured Project</h3>
+<p>
+[DESCRIBE YOUR PROJECT OR ACHIEVEMENT HERE]
+<br><br>
+This accomplishment reflects my dedication,
+creativity, and commitment to learning through
+real-world challenges.
+</p>
+</div>
+</section>
+<!-- CONTACT -->
+<section id="contact" class="hidden">
+<div class="section-title">
+<h2>Let's Connect</h2>
+<p>I'd love to share ideas and collaborate.</p>
+</div>
+<div class="contact-box">
+<h3>Contact Me</h3>
+<p>
+📧 your.email@example.com
+<br><br>
+🌐 Future Innovator • Student Leader • Lifelong Learner
+</p>
+<div class="socials">
+<a href="#">LinkedIn</a>
+<a href="#">GitHub</a>
+<a href="#">Portfolio</a>
+</div>
+</div>
+</section>
+<footer>
+© 2026 [YOUR NAME] • Designed with Passion & Creativity
+</footer>
+<script>
+const observer = new IntersectionObserver(entries=>{
+entries.forEach(entry=>{
+if(entry.isIntersecting){
+entry.target.classList.add("show");
+}
+});
+});
+document.querySelectorAll('.hidden').forEach(el=>{
+observer.observe(el);
+});
+</script>
 </body>
 </html>
